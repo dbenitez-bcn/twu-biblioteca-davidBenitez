@@ -41,4 +41,23 @@ public class LibraryTest {
 
         assertThat(actual, is(expected));
     }
+
+    @Test
+    public void libraryShouldBeCreatedFromAnArray() {
+        Library library;
+        Book[] books;
+        Book bookTemplate;
+        int actual;
+        int expected;
+
+        bookTemplate = new Book("Author testerino", 9999);
+        books = new Book[]{bookTemplate, bookTemplate, bookTemplate, bookTemplate, bookTemplate};
+        library = Library.fromArray(books);
+        actual = library.countOfBooks();
+        expected = 5;
+
+        assertThat(actual, is(expected));
+    }
+
+
 }

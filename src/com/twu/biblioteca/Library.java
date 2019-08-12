@@ -39,6 +39,14 @@ public class Library {
         return new Library(books);
     }
 
+    public static Library fromArray(Book[] list) {
+        ArrayList<Book> books = new ArrayList<Book>(
+                Arrays.asList(list)
+        );
+
+        return new Library(books);
+    }
+
     public int countOfBooks() {
         return this.collection.size();
     }
