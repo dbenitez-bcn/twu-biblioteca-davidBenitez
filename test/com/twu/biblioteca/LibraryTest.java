@@ -1,12 +1,30 @@
 package com.twu.biblioteca;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 
 public class LibraryTest {
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
+
+    @Before
+    public void setUpStreams() {
+        System.setOut(new PrintStream(outContent));
+    }
+
+    @After
+    public void restoreStreams() {
+        System.setOut(originalOut);
+    }
+
     @Test
     public void libraryExists() {
         Library actual;
@@ -50,11 +68,29 @@ public class LibraryTest {
         int actual;
         int expected;
 
-        bookTemplate = new Book("Author testerino", 9999);
+        bookTemplate = new Book("Testerino Author", 9999);
         books = new Book[]{bookTemplate, bookTemplate, bookTemplate, bookTemplate, bookTemplate};
         library = Library.fromArray(books);
         actual = library.countOfBooks();
         expected = 5;
+
+        assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void libraryShouldShowTheListOfBooks() {
+        Library library;
+        Book[] books;
+        Book bookTemplate;
+        String actual;
+        String expected;
+
+        bookTemplate = new Book("Testerino Author", 9999);
+        books = new Book[]{bookTemplate, bookTemplate, bookTemplate};
+        library = Library.fromArray(books);
+        library.showList();
+        actual = outContent.toString();
+        expected = "Testerino Author - 9999\n" + "Testerino Author - 9999\n" + "Testerino Author - 9999\n";
 
         assertThat(actual, is(expected));
     }

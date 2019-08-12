@@ -1,12 +1,29 @@
 package com.twu.biblioteca;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 
 public class LibraryTest {
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
+
+    @Before
+    public void setUpStreams() {
+        System.setOut(new PrintStream(outContent));
+    }
+
+    @After
+    public void restoreStreams() {
+        System.setOut(originalOut);
+    }
     @Test
     public void libraryExists() {
         Library actual;
@@ -58,4 +75,11 @@ public class LibraryTest {
 
         assertThat(actual, is(expected));
     }
+    @Test
+    public void out() {
+        System.out.print("hello");
+        assertThat("hello", is(outContent.toString()));
+    }
+
+
 }
