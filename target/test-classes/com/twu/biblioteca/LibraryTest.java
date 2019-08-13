@@ -90,7 +90,7 @@ public class LibraryTest {
         library = Library.fromArray(books);
         library.showList();
         actual = outContent.toString();
-        expected = "Testerino Author - 9999\n" + "Testerino Author - 9999\n" + "Testerino Author - 9999\n";
+        expected = "1.Testerino Author - 9999\n" + "2.Testerino Author - 9999\n" + "3.Testerino Author - 9999\n";
 
         assertThat(actual, is(expected));
     }
@@ -169,7 +169,6 @@ public class LibraryTest {
         library.checkOut(99);
         actual = outContent.toString();
         expected = "Sorry, that book is not available\n";
-
 
         assertThat(actual, is(expected));
     }

@@ -52,7 +52,7 @@ public class Library {
     }
 
     public void showList() {
-        for (Book book : this.collection) System.out.println(book);
+        for (int i = 0; i < this.collection.size(); i++) System.out.println((i+1) + "." + this.collection.get(i));
     }
 
     public void checkIn(Book book) {
