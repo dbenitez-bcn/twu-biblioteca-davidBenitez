@@ -50,4 +50,8 @@ public class Library {
     public int countOfBooks() {
         return this.collection.size();
     }
+
+    public void showList() {
+        for (Book book : this.collection) System.out.println(book);
+    }
 }

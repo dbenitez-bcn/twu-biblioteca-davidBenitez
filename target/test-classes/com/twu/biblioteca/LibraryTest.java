@@ -24,6 +24,7 @@ public class LibraryTest {
     public void restoreStreams() {
         System.setOut(originalOut);
     }
+
     @Test
     public void libraryExists() {
         Library actual;
@@ -67,7 +68,7 @@ public class LibraryTest {
         int actual;
         int expected;
 
-        bookTemplate = new Book("Author testerino", 9999);
+        bookTemplate = new Book("Testerino Author", 9999);
         books = new Book[]{bookTemplate, bookTemplate, bookTemplate, bookTemplate, bookTemplate};
         library = Library.fromArray(books);
         actual = library.countOfBooks();
@@ -75,10 +76,23 @@ public class LibraryTest {
 
         assertThat(actual, is(expected));
     }
+
     @Test
-    public void out() {
-        System.out.print("hello");
-        assertThat("hello", is(outContent.toString()));
+    public void libraryShouldShowTheListOfBooks() {
+        Library library;
+        Book[] books;
+        Book bookTemplate;
+        String actual;
+        String expected;
+
+        bookTemplate = new Book("Testerino Author", 9999);
+        books = new Book[]{bookTemplate, bookTemplate, bookTemplate};
+        library = Library.fromArray(books);
+        library.showList();
+        actual = outContent.toString();
+        expected = "Testerino Author - 9999\n" + "Testerino Author - 9999\n" + "Testerino Author - 9999\n";
+
+        assertThat(actual, is(expected));
     }
 
 
