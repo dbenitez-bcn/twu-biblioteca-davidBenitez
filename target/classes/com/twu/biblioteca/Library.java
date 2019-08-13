@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Library {
-    private ArrayList<Book> collection;
+    private ArrayList<Book> books;
 
     public Library() {
 
     }
 
-    public Library(ArrayList<Book> collection) {
-        this.collection = collection;
+    public Library(ArrayList<Book> books) {
+        this.books = books;
     }
 
     public static Library emptyCollection() {
@@ -47,49 +47,49 @@ public class Library {
     }
 
     public int countOfBooks() {
-        return this.collection.size();
+        return this.books.size();
     }
 
-    public void showList() {
-        for (int i = 0; i < this.collection.size(); i++){
+    public void listBooks() {
+        for (int i = 0; i < this.books.size(); i++){
             if(isBookInLibrary(i)){
-                System.out.println((i+1) + "." + this.collection.get(i));
+                System.out.println((i+1) + "." + this.books.get(i));
             }
         }
     }
 
     private boolean isBookInLibrary(int index){
-        return this.collection.get(index).isInLibrary();
+        return this.books.get(index).isInLibrary();
     }
 
-    public void checkIn(int i) {
+    public void checkInABook(int i) {
         int index = getIndexOfBook(i);
         try{
-            Book book = this.collection.get(index);
+            Book book = this.books.get(index);
             if(!book.isInLibrary()){
                 book.checkin();
-                showSuccessMessageCheckin();
+                showSuccessMessageCheckinForBook();
             }else{
-                showFailureMessageCheckin();
+                showFailureMessageCheckinForBook();
             }
         }catch (Exception e){
-            showFailureMessageCheckin();
+            showFailureMessageCheckinForBook();
         }
     }
 
-    public void checkOut(int i) {
+    public void checkOutABook(int i) {
         int index = getIndexOfBook(i);
         try {
 
-            Book book = this.collection.get(index);
+            Book book = this.books.get(index);
             if(book.isInLibrary()){
                 book.checkout();
-                showSuccessMessageCheckout();
+                showSuccessMessageCheckoutForBook();
             }else{
-                showFailureMessageCheckout();
+                showFailureMessageCheckoutForBook();
             }
         } catch (Exception e) {
-            showFailureMessageCheckout();
+            showFailureMessageCheckoutForBook();
         }
     }
 
@@ -98,19 +98,19 @@ public class Library {
         return --index;
     }
 
-    private void showSuccessMessageCheckout(){
+    private void showSuccessMessageCheckoutForBook(){
         System.out.println("Thank you! Enjoy the book");
     }
 
-    private void showFailureMessageCheckout(){
+    private void showFailureMessageCheckoutForBook(){
         System.out.println("Sorry, that book is not available");
     }
 
-    private void showSuccessMessageCheckin(){
+    private void showSuccessMessageCheckinForBook(){
         System.out.println("Thank you for returning the book");
     }
 
-    private void showFailureMessageCheckin(){
+    private void showFailureMessageCheckinForBook(){
         System.out.println("That is not a valid book to return");
     }
 }

@@ -54,7 +54,7 @@ public class BibliotecaApp {
         while (!exit) {
             int optionSelected;
 
-            library.showList();
+            library.listBooks();
             System.out.println("\n===1.Checkout a book | 2.Return a book | 3.Back===");
             optionSelected = getUserInputAsNumber();
             switch (optionSelected) {
@@ -79,7 +79,7 @@ public class BibliotecaApp {
 
         System.out.println("Type the number of the book to checkout");
         bookNumber = getUserInputAsNumber();
-        library.checkOut(bookNumber);
+        library.checkOutABook(bookNumber);
     }
 
     private static void checkinABook() {
@@ -87,7 +87,7 @@ public class BibliotecaApp {
 
         System.out.println("Type the number of the book to checkin");
         bookNumber = getUserInputAsNumber();
-        library.checkIn(bookNumber);
+        library.checkInABook(bookNumber);
     }
 
     private static void showInvalidOptionMessage() {

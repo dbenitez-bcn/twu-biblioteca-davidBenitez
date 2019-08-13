@@ -88,7 +88,7 @@ public class LibraryTest {
         bookTemplate = new Book("Testerino Author", 9999);
         books = new Book[]{bookTemplate, bookTemplate, bookTemplate};
         library = Library.fromArray(books);
-        library.showList();
+        library.listBooks();
         actual = outContent.toString();
         expected = "1.Testerino Author - 9999\n" + "2.Testerino Author - 9999\n" + "3.Testerino Author - 9999\n";
 
@@ -104,9 +104,9 @@ public class LibraryTest {
 
         books = new Book[]{new Book("Testerino Author", 9999), new Book("Testerino Author", 9999), new Book("Testerino Author", 9999)};
         library = Library.fromArray(books);
-        library.checkIn(1);
+        library.checkInABook(1);
         outContent.reset();
-        library.showList();
+        library.listBooks();
         actual = outContent.toString();
         expected = "1.Testerino Author - 9999\n" + "2.Testerino Author - 9999\n" + "3.Testerino Author - 9999\n";
 
@@ -122,9 +122,9 @@ public class LibraryTest {
 
         books = new Book[]{new Book("Testerino Author", 9999), new Book("Testerino Author", 9999), new Book("Testerino Author", 9999)};
         library = Library.fromArray(books);
-        library.checkOut(1);
+        library.checkOutABook(1);
         outContent.reset();
-        library.showList();
+        library.listBooks();
         actual = outContent.toString();
         expected = "2.Testerino Author - 9999\n" + "3.Testerino Author - 9999\n";
 
@@ -138,7 +138,7 @@ public class LibraryTest {
         String expected;
 
         library = Library.filledCollection();
-        library.checkOut(2);
+        library.checkOutABook(2);
         actual = outContent.toString();
         expected = "Thank you! Enjoy the book\n";
 
@@ -153,7 +153,7 @@ public class LibraryTest {
         String expected;
 
         library = Library.filledCollection();
-        library.checkOut(99);
+        library.checkOutABook(99);
         actual = outContent.toString();
         expected = "Sorry, that book is not available\n";
 
@@ -167,9 +167,9 @@ public class LibraryTest {
         String expected;
 
         library = Library.filledCollection();
-        library.checkOut(3);
+        library.checkOutABook(3);
         outContent.reset();
-        library.checkIn(3);
+        library.checkInABook(3);
         actual = outContent.toString();
         expected = "Thank you for returning the book\n";
 
@@ -183,7 +183,7 @@ public class LibraryTest {
         String expected;
 
         library = Library.filledCollection();
-        library.checkIn(30);
+        library.checkInABook(30);
         actual = outContent.toString();
         expected = "That is not a valid book to return\n";
 
@@ -197,7 +197,7 @@ public class LibraryTest {
         String expected;
 
         library = Library.filledCollection();
-        library.checkIn(1);
+        library.checkInABook(1);
         actual = outContent.toString();
         expected = "That is not a valid book to return\n";
 
@@ -211,9 +211,9 @@ public class LibraryTest {
         String expected;
 
         library = Library.filledCollection();
-        library.checkOut(1);
+        library.checkOutABook(1);
         outContent.reset();
-        library.checkOut(1);
+        library.checkOutABook(1);
         actual = outContent.toString();
         expected = "Sorry, that book is not available\n";
 
