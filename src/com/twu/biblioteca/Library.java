@@ -26,12 +26,12 @@ public class Library {
                         new Book("Patrick Rothfuss", 1999),
                         new Book("George R.R. Martin", 2019),
                         new Book("Anonymous", 2003),
-                        new Book("J.K. Rowling", 2009),
-                        new Book("J.R.R. Tolkien", 2009),
-                        new Book("Agatha Christie", 2009),
-                        new Book("Laura Gallego", 2009),
-                        new Book("Stephen King", 2009),
-                        new Book("Christie Golden", 2009)
+                        new Book("J.K. Rowling", 2015),
+                        new Book("J.R.R. Tolkien", 2004),
+                        new Book("Agatha Christie", 2023),
+                        new Book("Laura Gallego", 1969),
+                        new Book("Stephen King", 1987),
+                        new Book("Christie Golden", 2001)
                 )
         );
 
