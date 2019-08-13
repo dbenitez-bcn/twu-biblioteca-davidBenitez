@@ -96,7 +96,19 @@ public class LibraryTest {
     }
 
     @Test
-    public void checkIn
+    public void shouldStoreANewBook(){
+        Library library;
+        Book book;
+        int actual;
+        int expected;
 
+        library = Library.filledCollection();
+        book = new Book("Testerino Author", 2020);
+        library.checkIn(book);
+        actual = library.countOfBooks();
+        expected = 11;
+
+        assertThat(actual, is(expected));
+    }
 
 }

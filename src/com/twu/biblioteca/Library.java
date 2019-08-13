@@ -54,4 +54,8 @@ public class Library {
     public void showList() {
         for (Book book : this.collection) System.out.println(book);
     }
+
+    public void checkIn(Book book){
+        this.collection.add(book);
+    }
 }
