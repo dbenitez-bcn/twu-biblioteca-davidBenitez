@@ -19,7 +19,7 @@ public class BookTest {
     }
 
     @Test
-    public void bookSouldReturnStringWellFormatted(){
+    public void bookShouldReturnStringWellFormatted(){
         Book book;
         String actual;
         String expected;
@@ -27,6 +27,34 @@ public class BookTest {
         book = new Book("Example Author", 2019);
         actual = book.toString();
         expected = "Example Author - 2019";
+
+        assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void checkinABookShouldSetItAsCheckedIn(){
+        Book book;
+        boolean actual;
+        boolean expected;
+
+        book = new Book("Testerino Author", 1919);
+        book.checkin();
+        actual = book.isInLibrary();
+        expected = true;
+
+        assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void checkoutABookShouldSetItAsNotCheckedIn(){
+        Book book;
+        boolean actual;
+        boolean expected;
+
+        book = new Book("Testerino Author", 1919);
+        book.checkout();
+        actual = book.isInLibrary();
+        expected = false;
 
         assertThat(actual, is(expected));
     }
