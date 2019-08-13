@@ -55,7 +55,42 @@ public class Library {
         for (Book book : this.collection) System.out.println(book);
     }
 
-    public void checkIn(Book book){
+    public void checkIn(Book book) {
         this.collection.add(book);
+    }
+
+    public Book checkOut(int i) {
+        int index = getIndexForCheckout(i);
+        try {
+            Book result = getBookByIndex(index);
+            remoteBookByIndex(index);
+            showSuccessMessage();
+
+            return result;
+        } catch (Exception e) {
+            showFailureMessage();
+        }
+
+        return null;
+    }
+
+    private Book getBookByIndex(int index) {
+        return this.collection.get(index);
+    }
+
+    private void remoteBookByIndex(int index) {
+        this.collection.remove(index);
+    }
+
+    private int getIndexForCheckout(int index) {
+        return --index;
+    }
+
+    private void showSuccessMessage(){
+        System.out.println("Thank you! Enjoy the book");
+    }
+
+    private void showFailureMessage(){
+        System.out.println("Sorry, that book is not available");
     }
 }

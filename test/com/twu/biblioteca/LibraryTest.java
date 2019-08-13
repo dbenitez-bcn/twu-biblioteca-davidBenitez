@@ -96,7 +96,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldStoreANewBook(){
+    public void shouldStoreANewBook() {
         Library library;
         Book book;
         int actual;
@@ -111,4 +111,65 @@ public class LibraryTest {
         assertThat(actual, is(expected));
     }
 
+    @Test
+    public void shouldReturnTheCorrectBook() {
+        Library library;
+        Book[] list;
+        Book expected;
+        Book actual;
+
+        expected = new Book("Expected", 1000);
+        list = new Book[]{expected, new Book("Not expected", 1020), new Book("Also not expected", 2323)};
+        library = Library.fromArray(list);
+        actual = library.checkOut(1);
+
+        assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void shouldRemoveTheBookWhenCheckedOut() {
+        Library library;
+        Book[] books;
+        Book bookTemplate;
+        int actual;
+        int expected;
+
+        bookTemplate = new Book("Testerino Author", 9999);
+        books = new Book[]{bookTemplate, bookTemplate, bookTemplate};
+        library = Library.fromArray(books);
+        library.checkOut(1);
+        expected = 2;
+        actual = library.countOfBooks();
+
+        assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void shouldShowASuccessfullyMessageWhenCheckoutSuccess(){
+        Library library;
+        String actual;
+        String expected;
+
+        library = Library.filledCollection();
+        library.checkOut(2);
+        actual = outContent.toString();
+        expected = "Thank you! Enjoy the book\n";
+
+
+        assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void shouldShowAUnsuccessfullyMessageWhenCheckoutFails(){
+        Library library;
+        String actual;
+        String expected;
+
+        library = Library.filledCollection();
+        library.checkOut(99);
+        actual = outContent.toString();
+        expected = "Sorry, that book is not available\n";
+
+        assertThat(actual, is(expected));
+    }
 }
