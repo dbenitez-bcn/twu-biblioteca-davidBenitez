@@ -96,50 +96,37 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldStoreANewBook() {
-        Library library;
-        Book book;
-        int actual;
-        int expected;
-
-        library = Library.filledCollection();
-        book = new Book("Testerino Author", 2020);
-        library.checkIn(book);
-        actual = library.countOfBooks();
-        expected = 11;
-
-        assertThat(actual, is(expected));
-    }
-
-    @Test
-    public void shouldReturnTheCorrectBook() {
-        Library library;
-        Book[] list;
-        Book expected;
-        Book actual;
-
-        expected = new Book("Expected", 1000);
-        list = new Book[]{expected, new Book("Not expected", 1020), new Book("Also not expected", 2323)};
-        library = Library.fromArray(list);
-        actual = library.checkOut(1);
-
-        assertThat(actual, is(expected));
-    }
-
-    @Test
-    public void shouldRemoveTheBookWhenCheckedOut() {
+    public void shouldShowTheBookWhenCheckedIn() {
         Library library;
         Book[] books;
-        Book bookTemplate;
-        int actual;
-        int expected;
+        String actual;
+        String expected;
 
-        bookTemplate = new Book("Testerino Author", 9999);
-        books = new Book[]{bookTemplate, bookTemplate, bookTemplate};
+        books = new Book[]{new Book("Testerino Author", 9999), new Book("Testerino Author", 9999), new Book("Testerino Author", 9999)};
+        library = Library.fromArray(books);
+        library.checkIn(1);
+        outContent.reset();
+        library.showList();
+        actual = outContent.toString();
+        expected = "1.Testerino Author - 9999\n" + "2.Testerino Author - 9999\n" + "3.Testerino Author - 9999\n";
+
+        assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void shouldHideTheBookWhenCheckedOut() {
+        Library library;
+        Book[] books;
+        String actual;
+        String expected;
+
+        books = new Book[]{new Book("Testerino Author", 9999), new Book("Testerino Author", 9999), new Book("Testerino Author", 9999)};
         library = Library.fromArray(books);
         library.checkOut(1);
-        expected = 2;
-        actual = library.countOfBooks();
+        outContent.reset();
+        library.showList();
+        actual = outContent.toString();
+        expected = "2.Testerino Author - 9999\n" + "3.Testerino Author - 9999\n";
 
         assertThat(actual, is(expected));
     }
@@ -169,6 +156,34 @@ public class LibraryTest {
         library.checkOut(99);
         actual = outContent.toString();
         expected = "Sorry, that book is not available\n";
+
+        assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void shouldShowSuccessfullyMessageWhenCheckinSuccess(){
+        Library library;
+        String actual;
+        String expected;
+
+        library = Library.filledCollection();
+        library.checkIn(3);
+        actual = outContent.toString();
+        expected = "Thank you for returning the book\n";
+
+        assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void shouldShowUnsuccessfullyMessageWhenCheckinFails(){
+        Library library;
+        String actual;
+        String expected;
+
+        library = Library.filledCollection();
+        library.checkIn(30);
+        actual = outContent.toString();
+        expected = "That is not a valid book to return\n";
 
         assertThat(actual, is(expected));
     }

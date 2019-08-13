@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -52,34 +51,42 @@ public class Library {
     }
 
     public void showList() {
-        for (int i = 0; i < this.collection.size(); i++) System.out.println((i+1) + "." + this.collection.get(i));
+        for (int i = 0; i < this.collection.size(); i++){
+            if(isBookInLibrary(i)){
+                System.out.println((i+1) + "." + this.collection.get(i));
+            }
+        }
     }
 
-    public void checkIn(Book book) {
-        this.collection.add(book);
+    private boolean isBookInLibrary(int index){
+        return this.collection.get(index).isInLibrary();
     }
 
-    public Book checkOut(int i) {
+    public void checkIn(int index) {
+        try{
+            this.collection.get(index).checkin();
+            System.out.println("Thank you for returning the book");
+        }catch (Exception e){
+            System.out.println("That is not a valid book to return");
+        }
+    }
+
+    public void checkOut(int i) {
         int index = getIndexForCheckout(i);
         try {
-            Book result = getBookByIndex(index);
-            remoteBookByIndex(index);
+            hideBookByIndex(index);
             showSuccessMessage();
-
-            return result;
         } catch (Exception e) {
             showFailureMessage();
         }
-
-        return null;
     }
 
     private Book getBookByIndex(int index) {
         return this.collection.get(index);
     }
 
-    private void remoteBookByIndex(int index) {
-        this.collection.remove(index);
+    private void hideBookByIndex(int index) {
+        this.collection.get(index).checkout();
     }
 
     private int getIndexForCheckout(int index) {
