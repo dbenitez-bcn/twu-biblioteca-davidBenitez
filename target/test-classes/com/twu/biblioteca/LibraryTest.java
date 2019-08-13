@@ -167,6 +167,8 @@ public class LibraryTest {
         String expected;
 
         library = Library.filledCollection();
+        library.checkOut(3);
+        outContent.reset();
         library.checkIn(3);
         actual = outContent.toString();
         expected = "Thank you for returning the book\n";
@@ -184,6 +186,36 @@ public class LibraryTest {
         library.checkIn(30);
         actual = outContent.toString();
         expected = "That is not a valid book to return\n";
+
+        assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void shouldFailToCheckinIfBookIsAlreadyCheckedIn(){
+        Library library;
+        String actual;
+        String expected;
+
+        library = Library.filledCollection();
+        library.checkIn(1);
+        actual = outContent.toString();
+        expected = "That is not a valid book to return\n";
+
+        assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void shouldFailToCheckoutIfBookIsAlreadyCheckedOut(){
+        Library library;
+        String actual;
+        String expected;
+
+        library = Library.filledCollection();
+        library.checkOut(1);
+        outContent.reset();
+        library.checkOut(1);
+        actual = outContent.toString();
+        expected = "Sorry, that book is not available\n";
 
         assertThat(actual, is(expected));
     }

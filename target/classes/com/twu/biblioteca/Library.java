@@ -62,30 +62,39 @@ public class Library {
         return this.collection.get(index).isInLibrary();
     }
 
-    public void checkIn(int index) {
+    public void checkIn(int i) {
+        int index = getIndexOfBook(i);
         try{
-            this.collection.get(index).checkin();
-            showSuccessMessageCheckin();
+            Book book = this.collection.get(index);
+            if(!book.isInLibrary()){
+                book.checkin();
+                showSuccessMessageCheckin();
+            }else{
+                showFailureMessageCheckin();
+            }
         }catch (Exception e){
             showFailureMessageCheckin();
         }
     }
 
     public void checkOut(int i) {
-        int index = getIndexForCheckout(i);
+        int index = getIndexOfBook(i);
         try {
-            hideBookByIndex(index);
-            showSuccessMessageCheckout();
+
+            Book book = this.collection.get(index);
+            if(book.isInLibrary()){
+                book.checkout();
+                showSuccessMessageCheckout();
+            }else{
+                showFailureMessageCheckout();
+            }
         } catch (Exception e) {
             showFailureMessageCheckout();
         }
     }
 
-    private void hideBookByIndex(int index) {
-        this.collection.get(index).checkout();
-    }
 
-    private int getIndexForCheckout(int index) {
+    private int getIndexOfBook(int index) {
         return --index;
     }
 
