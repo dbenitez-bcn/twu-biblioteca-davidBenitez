@@ -65,9 +65,9 @@ public class Library {
     public void checkIn(int index) {
         try{
             this.collection.get(index).checkin();
-            System.out.println("Thank you for returning the book");
+            showSuccessMessageCheckin();
         }catch (Exception e){
-            System.out.println("That is not a valid book to return");
+            showFailureMessageCheckin();
         }
     }
 
@@ -75,14 +75,10 @@ public class Library {
         int index = getIndexForCheckout(i);
         try {
             hideBookByIndex(index);
-            showSuccessMessage();
+            showSuccessMessageCheckout();
         } catch (Exception e) {
-            showFailureMessage();
+            showFailureMessageCheckout();
         }
-    }
-
-    private Book getBookByIndex(int index) {
-        return this.collection.get(index);
     }
 
     private void hideBookByIndex(int index) {
@@ -93,11 +89,19 @@ public class Library {
         return --index;
     }
 
-    private void showSuccessMessage(){
+    private void showSuccessMessageCheckout(){
         System.out.println("Thank you! Enjoy the book");
     }
 
-    private void showFailureMessage(){
+    private void showFailureMessageCheckout(){
         System.out.println("Sorry, that book is not available");
+    }
+
+    private void showSuccessMessageCheckin(){
+        System.out.println("Thank you for returning the book");
+    }
+
+    private void showFailureMessageCheckin(){
+        System.out.println("That is not a valid book to return");
     }
 }
