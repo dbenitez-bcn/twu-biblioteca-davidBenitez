@@ -30,7 +30,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void libraryCreatedWithZeroBooks() {
+    public void libraryShouldCreatedWithZeroBooksWhenCreatedByEmptyConstructor() {
         int actual;
         int expected;
 
@@ -41,7 +41,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void libraryCreatedWithZeroMovies() {
+    public void libraryShouldBeCreatedWithZeroMoviesWhenCreatedByEmptyConstructor() {
         int actual;
         int expected;
 
@@ -52,7 +52,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void libraryCreatedWithTenBooks() {
+    public void libraryShouldBeCreatedWithTenBooksWhenCreatedByFilledConstructor() {
         int actual;
         int expected;
 
@@ -63,7 +63,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void libraryCreatedWithFourMovies() {
+    public void libraryShouldBeCreatedWithFourMoviesWhenCreatedByFilledConstructor() {
         int actual;
         int expected;
 
@@ -74,7 +74,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void libraryShouldBeCreatedFromAnArray() {
+    public void libraryShouldBeCreatedFromAnArrayWhenUsedFromArrayConstructor() {
         Book[] books;
         Book bookTemplate;
         int actual;
@@ -90,7 +90,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void libraryShouldShowTheListOfBooks() {
+    public void libraryShouldShowTheListOfBooksWhenUserAskForIt() {
         Book[] books;
         Book bookTemplate;
         String actual;
@@ -226,7 +226,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldFailToCheckinIfBookIsAlreadyCheckedIn(){
+    public void shouldFailToCheckinWhenBookIsAlreadyCheckedIn(){
         String actual;
         String expected;
 
@@ -238,7 +238,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldFailToCheckoutIfBookIsAlreadyCheckedOut(){
+    public void shouldFailToCheckoutWhenBookIsAlreadyCheckedOut(){
         String actual;
         String expected;
 
