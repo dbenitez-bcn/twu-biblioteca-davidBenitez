@@ -15,7 +15,7 @@ public class UserTest {
     }
 
     @Test
-    public void toStringShouldReturnTheRightInformation(){
+    public void toStringShouldReturnTheRightInformationWhenInvoked(){
         String actual;
         String expected;
 
@@ -26,7 +26,7 @@ public class UserTest {
     }
 
     @Test
-    public void userIsNotLoggetInIfHasntCodeAndPassword(){
+    public void userShouldNotBeLoggedInWhenItHasntCodeAndPassword(){
         boolean actual;
         boolean expected;
 
@@ -37,7 +37,7 @@ public class UserTest {
     }
 
     @Test
-    public void userShouldBeLoggedInAfterAddingPassworkdAndCode(){
+    public void userShouldBeLoggedInWhenAddingPassworkdAndCode(){
         boolean actual;
         boolean expected;
 
