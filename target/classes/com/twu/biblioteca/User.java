@@ -62,6 +62,10 @@ public class User {
         this.password = null;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return "Name: " + name + "\nEmail: " + email + "\nPhone: " + phone;

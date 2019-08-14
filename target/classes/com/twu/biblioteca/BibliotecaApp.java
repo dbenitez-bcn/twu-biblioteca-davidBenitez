@@ -122,6 +122,7 @@ public class BibliotecaApp {
             optionSelected = getUserInputAsNumber();
             switch (optionSelected) {
                 case 1:
+                    checkoutAMovie();
                     break;
                 case 2:
                     exit = true;
@@ -140,6 +141,13 @@ public class BibliotecaApp {
         System.out.println("Type the number of the book to checkout");
         bookNumber = getUserInputAsNumber();
         library.checkOutABook(bookNumber);
+    }
+    private static void checkoutAMovie() {
+        int bookNumber;
+
+        System.out.println("Type the number of the movie to checkout");
+        bookNumber = getUserInputAsNumber();
+        library.checkOutAMovie(bookNumber, user.getName());
     }
 
     private static void checkinABook() {
