@@ -5,7 +5,7 @@ public class Movie {
     private int year;
     private String director;
     private int rating;
-    private boolean chekedIn;
+    private String chekedOutBy;
 
     public Movie(){
 
@@ -15,27 +15,29 @@ public class Movie {
         this.name = name;
         this.year = year;
         this.director = director;
-        this.chekedIn = true;
+        this.chekedOutBy = null;
         if (rating > 10) this.rating = 10;
         else if (rating < 1) this.rating = 1;
         else this.rating = rating;
     }
 
     public boolean isInLibrary(){
-        return this.chekedIn;
+        if (this.chekedOutBy == null) return true;
+        return false;
     }
 
     public void checkin(){
-        this.chekedIn = true;
+        this.chekedOutBy = null;
     }
 
-    public void checkout(){
-        this.chekedIn = false;
+    public void checkout(String userName){
+        this.chekedOutBy = userName;
     }
 
     @Override
     public String toString() {
-        return this.name + "(" + year + ") - " + director + ": " +rating;
+        if(isInLibrary()) return this.name + "(" + year + ") - " + director + ": " +rating;
+        return this.name + " is checked out by " + this.chekedOutBy;
     }
 
 }

@@ -140,6 +140,24 @@ public class LibraryTest {
     }
 
     @Test
+    public void userShouldCheckoutAMovieWhenAsksForIt(){
+        Library library;
+        Movie[] movies;
+        String actual;
+        String expected;
+
+        movies = new Movie[]{new Movie("Test movie", 1234, "Director", 5),new Movie("Test movie", 1234, "Director", 5)};
+        library = Library.fromArray(new Book[]{}, movies);
+        library.checkOutAMovie(1, "UserName");
+        outContent.reset();
+        library.listMovies();
+        actual = outContent.toString();
+        expected = "1.Test movie is checked out by UserName\n2.Test movie(1234) - Director: 5\n";
+
+        assertThat(actual, is(expected));
+    }
+
+    @Test
     public void shouldShowTheBookWhenCheckedIn() {
         Library library;
         Book[] books;

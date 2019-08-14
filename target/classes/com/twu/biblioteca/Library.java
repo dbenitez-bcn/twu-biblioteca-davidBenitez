@@ -89,7 +89,7 @@ public class Library {
     }
 
     public void checkInABook(int i) {
-        int index = getIndexOfBook(i);
+        int index = getIndexForCheck(i);
         try {
             Book book = this.books.get(index);
             if (!book.isInLibrary()) {
@@ -104,7 +104,7 @@ public class Library {
     }
 
     public void checkOutABook(int i) {
-        int index = getIndexOfBook(i);
+        int index = getIndexForCheck(i);
         try {
 
             Book book = this.books.get(index);
@@ -119,8 +119,22 @@ public class Library {
         }
     }
 
+    public void checkOutAMovie(int i, String userName){
+        int index = getIndexForCheck(i);
+        try {
+            Movie movie = this.movies.get(index);
+            if(movie.isInLibrary()){
+                movie.checkout(userName);
+                showSuccessMessageCheckoutForMovie();
+            }else{
+                showFailureMessageCheckinForMovie();
+            }
+        }catch(Exception e){
+            showFailureMessageCheckinForMovie();
+        }
+    }
 
-    private int getIndexOfBook(int index) {
+    private int getIndexForCheck(int index) {
         return --index;
     }
 
@@ -138,5 +152,21 @@ public class Library {
 
     private void showFailureMessageCheckinForBook() {
         System.out.println("That is not a valid book to return");
+    }
+
+    private void showSuccessMessageCheckoutForMovie() {
+        System.out.println("Thank you! Enjoy the movie");
+    }
+
+    private void showFailureMessageCheckoutForMovie() {
+        System.out.println("Sorry, that movie is not available");
+    }
+
+    private void showSuccessMessageCheckinForMovie() {
+        System.out.println("Thank you for returning the Movie");
+    }
+
+    private void showFailureMessageCheckinForMovie() {
+        System.out.println("That is not a valid movie to return");
     }
 }

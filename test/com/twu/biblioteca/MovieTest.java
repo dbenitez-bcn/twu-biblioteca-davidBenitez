@@ -30,7 +30,35 @@ public class MovieTest {
     }
 
     @Test
-    public void movieShouldBeMarkAsCheckedIn(){
+    public void toStringShouldReturnTheUserNameAndTheNameWhenIsCheckedOut(){
+        Movie movie;
+        String actual;
+        String expected;
+
+        movie = new Movie("Test movie", 1234, "Testerino", 8);
+        movie.checkout("UserName");
+        actual = movie.toString();
+        expected = "Test movie is checked out by UserName";
+
+        assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void movieShouldBeMarkAsCheckedOutWhenUserChecksout(){
+        Movie movie;
+        boolean actual;
+        boolean expected;
+
+        movie = new Movie("Test movie", 1234, "Testerino", 99);
+        movie.checkout("UserNameTest");
+        actual = movie.isInLibrary();
+        expected = false;
+
+        assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void movieShouldBeMarkAsCheckedin(){
         Movie movie;
         boolean actual;
         boolean expected;
@@ -39,20 +67,6 @@ public class MovieTest {
         movie.checkin();
         actual = movie.isInLibrary();
         expected = true;
-
-        assertThat(actual, is(expected));
-    }
-
-    @Test
-    public void movieShouldBeMarkAsCheckedOut(){
-        Movie movie;
-        boolean actual;
-        boolean expected;
-
-        movie = new Movie("Test movie", 1234, "Testerino", 99);
-        movie.checkout();
-        actual = movie.isInLibrary();
-        expected = false;
 
         assertThat(actual, is(expected));
     }
