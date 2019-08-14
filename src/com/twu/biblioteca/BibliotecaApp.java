@@ -40,8 +40,8 @@ public class BibliotecaApp {
         try {
             return Integer.parseInt(userInput);
         } catch (Exception e) {
+            return -1;
         }
-        return -1;
     }
 
     private static String getUserInput() {

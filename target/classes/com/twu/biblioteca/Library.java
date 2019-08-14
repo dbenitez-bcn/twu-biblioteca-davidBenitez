@@ -5,18 +5,21 @@ import java.util.Arrays;
 
 public class Library {
     private ArrayList<Book> books;
+    private ArrayList<Movie> movies;
 
     public Library() {
 
     }
 
-    public Library(ArrayList<Book> books) {
+    public Library(ArrayList<Book> books, ArrayList<Movie> movies) {
         this.books = books;
+        this.movies = movies;
     }
 
     public static Library emptyCollection() {
         ArrayList<Book> books = new ArrayList<Book>();
-        return new Library(books);
+        ArrayList<Movie> movies = new ArrayList<Movie>();
+        return new Library(books, movies);
     }
 
     public static Library filledCollection() {
@@ -35,44 +38,67 @@ public class Library {
                 )
         );
 
-        return new Library(books);
-    }
-
-    public static Library fromArray(Book[] list) {
-        ArrayList<Book> books = new ArrayList<Book>(
-                Arrays.asList(list)
+        ArrayList<Movie> movies = new ArrayList<Movie>(
+                Arrays.asList(
+                        new Movie("Pulp Fiction", 1990, "Tarantino", 10),
+                        new Movie("Avengers: End", 2019, "Roussou Brothers", 9),
+                        new Movie("Avatar", 2010, "JAmes Cameron", 9),
+                        new Movie("Piratas del Caribe", 2017, "Disney", 7)
+                )
         );
 
-        return new Library(books);
+        return new Library(books, movies);
+    }
+
+    public static Library fromArray(Book[] booksList, Movie[] moviesList) {
+        ArrayList<Book> books = new ArrayList<Book>(
+                Arrays.asList(booksList)
+        );
+
+        ArrayList<Movie> movies = new ArrayList<Movie>(
+                Arrays.asList(moviesList)
+        );
+
+        return new Library(books, movies);
     }
 
     public int countOfBooks() {
         return this.books.size();
     }
 
+    public int countOfMovies() {
+        return this.movies.size();
+    }
+
     public void listBooks() {
-        for (int i = 0; i < this.books.size(); i++){
-            if(isBookInLibrary(i)){
-                System.out.println((i+1) + "." + this.books.get(i));
+        for (int i = 0; i < this.books.size(); i++) {
+            if (isBookInLibrary(i)) {
+                System.out.println((i + 1) + "." + this.books.get(i));
             }
         }
     }
 
-    private boolean isBookInLibrary(int index){
+    public void listMovies() {
+        for (int i = 0; i < this.movies.size(); i++) {
+            System.out.println((i + 1) + "." + this.movies.get(i));
+        }
+    }
+
+    private boolean isBookInLibrary(int index) {
         return this.books.get(index).isInLibrary();
     }
 
     public void checkInABook(int i) {
         int index = getIndexOfBook(i);
-        try{
+        try {
             Book book = this.books.get(index);
-            if(!book.isInLibrary()){
+            if (!book.isInLibrary()) {
                 book.checkin();
                 showSuccessMessageCheckinForBook();
-            }else{
+            } else {
                 showFailureMessageCheckinForBook();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             showFailureMessageCheckinForBook();
         }
     }
@@ -82,10 +108,10 @@ public class Library {
         try {
 
             Book book = this.books.get(index);
-            if(book.isInLibrary()){
+            if (book.isInLibrary()) {
                 book.checkout();
                 showSuccessMessageCheckoutForBook();
-            }else{
+            } else {
                 showFailureMessageCheckoutForBook();
             }
         } catch (Exception e) {
@@ -98,19 +124,19 @@ public class Library {
         return --index;
     }
 
-    private void showSuccessMessageCheckoutForBook(){
+    private void showSuccessMessageCheckoutForBook() {
         System.out.println("Thank you! Enjoy the book");
     }
 
-    private void showFailureMessageCheckoutForBook(){
+    private void showFailureMessageCheckoutForBook() {
         System.out.println("Sorry, that book is not available");
     }
 
-    private void showSuccessMessageCheckinForBook(){
+    private void showSuccessMessageCheckinForBook() {
         System.out.println("Thank you for returning the book");
     }
 
-    private void showFailureMessageCheckinForBook(){
+    private void showFailureMessageCheckinForBook() {
         System.out.println("That is not a valid book to return");
     }
 }

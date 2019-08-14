@@ -17,7 +17,7 @@ public class Movie {
         this.director = director;
         this.chekedIn = true;
         if (rating > 10) this.rating = 10;
-        else if (rating < 10) this.rating = 1;
+        else if (rating < 1) this.rating = 1;
         else this.rating = rating;
     }
 

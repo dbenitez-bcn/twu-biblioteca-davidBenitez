@@ -48,6 +48,19 @@ public class LibraryTest {
     }
 
     @Test
+    public void libraryCreatedWithZeroMovies() {
+        Library library;
+        int actual;
+        int expected;
+
+        library = Library.emptyCollection();
+        actual = library.countOfMovies();
+        expected = 0;
+
+        assertThat(actual, is(expected));
+    }
+
+    @Test
     public void libraryCreatedWithTenBooks() {
         Library library;
         int actual;
@@ -56,6 +69,19 @@ public class LibraryTest {
         library = Library.filledCollection();
         actual = library.countOfBooks();
         expected = 10;
+
+        assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void libraryCreatedWithFourMovies() {
+        Library library;
+        int actual;
+        int expected;
+
+        library = Library.filledCollection();
+        actual = library.countOfMovies();
+        expected = 4;
 
         assertThat(actual, is(expected));
     }
@@ -70,7 +96,7 @@ public class LibraryTest {
 
         bookTemplate = new Book("Testerino Author", 9999);
         books = new Book[]{bookTemplate, bookTemplate, bookTemplate, bookTemplate, bookTemplate};
-        library = Library.fromArray(books);
+        library = Library.fromArray(books, new Movie[]{});
         actual = library.countOfBooks();
         expected = 5;
 
@@ -87,10 +113,28 @@ public class LibraryTest {
 
         bookTemplate = new Book("Testerino Author", 9999);
         books = new Book[]{bookTemplate, bookTemplate, bookTemplate};
-        library = Library.fromArray(books);
+        library = Library.fromArray(books, new Movie[]{});
         library.listBooks();
         actual = outContent.toString();
         expected = "1.Testerino Author - 9999\n" + "2.Testerino Author - 9999\n" + "3.Testerino Author - 9999\n";
+
+        assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void libraryShouldShowTheListOfMoviesWhenUserAskForThem() {
+        Library library;
+        Movie[] movies;
+        Movie movieTemplate;
+        String actual;
+        String expected;
+
+        movieTemplate = new Movie("Test movie", 1234, "Director", 5);
+        movies = new Movie[]{movieTemplate, movieTemplate};
+        library = Library.fromArray(new Book[]{}, movies);
+        library.listMovies();
+        actual = outContent.toString();
+        expected = "1.Test movie(1234) - Director: 5\n2.Test movie(1234) - Director: 5\n";
 
         assertThat(actual, is(expected));
     }
@@ -103,7 +147,7 @@ public class LibraryTest {
         String expected;
 
         books = new Book[]{new Book("Testerino Author", 9999), new Book("Testerino Author", 9999), new Book("Testerino Author", 9999)};
-        library = Library.fromArray(books);
+        library = Library.fromArray(books, new Movie[]{});
         library.checkInABook(1);
         outContent.reset();
         library.listBooks();
@@ -121,7 +165,7 @@ public class LibraryTest {
         String expected;
 
         books = new Book[]{new Book("Testerino Author", 9999), new Book("Testerino Author", 9999), new Book("Testerino Author", 9999)};
-        library = Library.fromArray(books);
+        library = Library.fromArray(books, new Movie[]{});
         library.checkOutABook(1);
         outContent.reset();
         library.listBooks();

@@ -11,7 +11,7 @@ public class Book {
         this.checkedIn = true;
     }
 
-    public  void checkin(){
+    void checkin(){
         this.checkedIn = true;
     }
 
