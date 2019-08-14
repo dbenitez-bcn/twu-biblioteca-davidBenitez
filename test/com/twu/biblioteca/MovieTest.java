@@ -15,7 +15,7 @@ public class MovieTest {
     }
 
     @Test
-    public void toStringShouldReturnTheMovieInformation(){
+    public void toStringShouldReturnTheMovieInformationWhenInvoked(){
         String actual;
         String expected;
 
@@ -50,7 +50,7 @@ public class MovieTest {
     }
 
     @Test
-    public void movieShouldBeMarkAsCheckedin(){
+    public void movieShouldBeMarkAsCheckedinWhenUserReturnsIt(){
         boolean actual;
         boolean expected;
 
