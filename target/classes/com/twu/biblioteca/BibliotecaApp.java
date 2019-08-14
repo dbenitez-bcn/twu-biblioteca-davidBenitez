@@ -20,14 +20,15 @@ public class BibliotecaApp {
         while (!exit) {
             int optionSelected;
 
-            if (isLoggedIn()){
+            if (isLoggedIn()) {
                 System.out.println("===1.List of books | 2.List of Movies | 3.My information | 4.Logout | 5.Quit===");
                 optionSelected = getUserInputAsNumber();
                 switch (optionSelected) {
                     case 1:
-                        showList();
+                        showListOfBooks();
                         break;
                     case 2:
+                        showListOfMovies();
                         break;
                     case 3:
                         showUserInformation();
@@ -42,7 +43,7 @@ public class BibliotecaApp {
                         showInvalidOptionMessage();
                         break;
                 }
-            }else {
+            } else {
                 System.out.println("===1.Login | 2.Quit===");
                 optionSelected = getUserInputAsNumber();
                 switch (optionSelected) {
@@ -60,7 +61,7 @@ public class BibliotecaApp {
         }
     }
 
-    private static void login(){
+    private static void login() {
         String code;
         String password;
 
@@ -86,7 +87,7 @@ public class BibliotecaApp {
         return s.nextLine();
     }
 
-    private static void showList() {
+    private static void showListOfBooks() {
         boolean exit = false;
         while (!exit) {
             int optionSelected;
@@ -111,6 +112,28 @@ public class BibliotecaApp {
         }
     }
 
+    private static void showListOfMovies() {
+        boolean exit = false;
+        while (!exit) {
+            int optionSelected;
+
+            library.listMovies();
+            System.out.println("===1.Checkout a movie | 2.Back===");
+            optionSelected = getUserInputAsNumber();
+            switch (optionSelected) {
+                case 1:
+                    break;
+                case 2:
+                    exit = true;
+                    break;
+                default:
+                    showInvalidOptionMessage();
+                    break;
+            }
+        }
+
+    }
+
     private static void checkoutABook() {
         int bookNumber;
 
@@ -131,7 +154,7 @@ public class BibliotecaApp {
         System.out.println("Please select a valid option!");
     }
 
-    private static boolean isLoggedIn(){
+    private static boolean isLoggedIn() {
         return user.isLoggetIn();
     }
 
@@ -139,7 +162,7 @@ public class BibliotecaApp {
         user.logout();
     }
 
-    private static void showUserInformation(){
+    private static void showUserInformation() {
         System.out.println(user);
     }
 }
