@@ -57,6 +57,11 @@ public class User {
         this.password = password;
     }
 
+    public void logout(){
+        this.libraryCode = null;
+        this.password = null;
+    }
+
     @Override
     public String toString() {
         return "Name: " + name + "\nEmail: " + email + "\nPhone: " + phone;

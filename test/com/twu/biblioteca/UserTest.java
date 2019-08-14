@@ -54,4 +54,18 @@ public class UserTest {
 
         assertThat(actual, is(expected));
     }
+
+    @Test
+    public void userShouldRemoveCodeAndPasswordWhenUserLogsOut(){
+        User user;
+        boolean actual;
+        boolean expected;
+
+        user = new User("Testerino", "testerino@testing.com", 123456789);
+        user.logout();
+        actual = user.isLoggetIn();
+        expected = false;
+
+        assertThat(actual, is(expected));
+    }
 }
