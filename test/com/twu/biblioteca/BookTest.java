@@ -1,30 +1,25 @@
 package com.twu.biblioteca;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 
 
 public class BookTest {
-    @Test
-    public void bookShouldExist() {
-        // Arrange
-        Book actual;
-        // Act
-        actual = new Book("First author", 2019);
-        // Assert
-        assertThat(actual, notNullValue());
+    Book book;
+
+    @Before
+    public void setup() {
+        book = new Book("Example Author", 2019);
     }
 
     @Test
-    public void bookShouldReturnStringWellFormatted(){
-        Book book;
+    public void bookShouldReturnStringWellFormatted() {
         String actual;
         String expected;
 
-        book = new Book("Example Author", 2019);
         actual = book.toString();
         expected = "Example Author - 2019";
 
@@ -32,12 +27,10 @@ public class BookTest {
     }
 
     @Test
-    public void checkinABookShouldSetItAsCheckedIn(){
-        Book book;
+    public void checkinABookShouldSetItAsCheckedIn() {
         boolean actual;
         boolean expected;
 
-        book = new Book("Testerino Author", 1919);
         book.checkin();
         actual = book.isInLibrary();
         expected = true;
@@ -46,12 +39,10 @@ public class BookTest {
     }
 
     @Test
-    public void checkoutABookShouldSetItAsNotCheckedIn(){
-        Book book;
+    public void checkoutABookShouldSetItAsNotCheckedIn() {
         boolean actual;
         boolean expected;
 
-        book = new Book("Testerino Author", 1919);
         book.checkout();
         actual = book.isInLibrary();
         expected = false;

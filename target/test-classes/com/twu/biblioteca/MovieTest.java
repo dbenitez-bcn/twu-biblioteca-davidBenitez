@@ -53,7 +53,7 @@ public class MovieTest {
     public void movieShouldBeMarkAsCheckedin(){
         boolean actual;
         boolean expected;
-        
+
         movie.checkin();
         actual = movie.isInLibrary();
         expected = true;
