@@ -16,7 +16,7 @@ public class BookTest {
     }
 
     @Test
-    public void bookShouldReturnStringWellFormatted() {
+    public void bookShouldReturnStringWellFormattedWhenInvoked() {
         String actual;
         String expected;
 
@@ -27,7 +27,7 @@ public class BookTest {
     }
 
     @Test
-    public void checkinABookShouldSetItAsCheckedIn() {
+    public void checkinABookShouldSetItAsCheckedInWhenUserReturnsTheBook() {
         boolean actual;
         boolean expected;
 
@@ -39,7 +39,7 @@ public class BookTest {
     }
 
     @Test
-    public void checkoutABookShouldSetItAsNotCheckedIn() {
+    public void checkingOutShouldSetTheBookOutOfTheLibraryWhenUsersChecksoutsABook() {
         boolean actual;
         boolean expected;
 
