@@ -21,13 +21,16 @@ public class BibliotecaApp {
             int optionSelected;
 
             if (isLoggedIn()){
-                System.out.println("===1.List of books | 2.Quit===");
+                System.out.println("===1.List of books | 2.List of Movies | 3.My information | 4.Logout | 5.Quit===");
                 optionSelected = getUserInputAsNumber();
                 switch (optionSelected) {
                     case 1:
                         showList();
                         break;
-                    case 2:
+                    case 4:
+                        logout();
+                        break;
+                    case 5:
                         exit = true;
                         break;
                     default:
@@ -125,5 +128,9 @@ public class BibliotecaApp {
 
     private static boolean isLoggedIn(){
         return user.isLoggetIn();
+    }
+
+    private static void logout() {
+        user.logout();
     }
 }
