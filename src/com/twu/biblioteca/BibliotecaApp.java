@@ -27,6 +27,11 @@ public class BibliotecaApp {
                     case 1:
                         showList();
                         break;
+                    case 2:
+                        break;
+                    case 3:
+                        showUserInformation();
+                        break;
                     case 4:
                         logout();
                         break;
@@ -132,5 +137,9 @@ public class BibliotecaApp {
 
     private static void logout() {
         user.logout();
+    }
+
+    private static void showUserInformation(){
+        System.out.println(user);
     }
 }
