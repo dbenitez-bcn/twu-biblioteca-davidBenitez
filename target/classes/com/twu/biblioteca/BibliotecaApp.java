@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class BibliotecaApp {
     private static Library library = Library.filledCollection();
+    private static User user = new User("David Benitez", "david.benitez@thoguhtworks.com", 634691525);
 
     public static void main(String[] args) {
         showWelcomeMessage();
@@ -19,20 +20,48 @@ public class BibliotecaApp {
         while (!exit) {
             int optionSelected;
 
-            System.out.println("===1.List of books | 2.Quit===");
-            optionSelected = getUserInputAsNumber();
-            switch (optionSelected) {
-                case 1:
-                    showList();
-                    break;
-                case 2:
-                    exit = true;
-                    break;
-                default:
-                    showInvalidOptionMessage();
-                    break;
+            if (isLoggedIn()){
+                System.out.println("===1.List of books | 2.Quit===");
+                optionSelected = getUserInputAsNumber();
+                switch (optionSelected) {
+                    case 1:
+                        showList();
+                        break;
+                    case 2:
+                        exit = true;
+                        break;
+                    default:
+                        showInvalidOptionMessage();
+                        break;
+                }
+            }else {
+                System.out.println("===1.Login | 2.Quit===");
+                optionSelected = getUserInputAsNumber();
+                switch (optionSelected) {
+                    case 1:
+                        login();
+                        break;
+                    case 2:
+                        exit = true;
+                        break;
+                    default:
+                        showInvalidOptionMessage();
+                        break;
+                }
             }
         }
+    }
+
+    private static void login(){
+        String code;
+        String password;
+
+        System.out.println("Type your library number");
+        code = getUserInput();
+        System.out.println("Type your password");
+        password = getUserInput();
+
+        user.login(code, password);
     }
 
     private static int getUserInputAsNumber() {
@@ -92,5 +121,9 @@ public class BibliotecaApp {
 
     private static void showInvalidOptionMessage() {
         System.out.println("Please select a valid option!");
+    }
+
+    private static boolean isLoggedIn(){
+        return user.isLoggetIn();
     }
 }
