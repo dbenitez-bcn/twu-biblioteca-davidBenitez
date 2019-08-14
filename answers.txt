@@ -1,0 +1,11 @@
+1. SELECT member.name FROM member, book, checkout_item WHERE member.id = checkout_item.member_id AND checkout_item.book_id = book.id AND book.title = "The Hobbit";
+2. SELECT count(member.name) FROM member WHERE member.id NOT IN (SELECT checkout_item.member_id FROM checkout_item);
+3.
+    -For Books: SELECT book.title FROM book WHERE book.id NOT IN (SELECT checkout_item.book_id FROM checkout_item WHERE checkout_item.book_id NOT NULL);
+    -For Movies: SELECT movie.title FROM movie WHERE movie.id NOT IN (SELECT checkout_item.movie_id FROM checkout_item WHERE checkout_item.movie_id NOT NULL);
+4.
+    -Add myself to member's table: INSERT INTO member (id, name) VALUES (101, "David Benitez");
+    -Add TPP to book's table: INSERT INTO book (id, title) VALUES (101, "The Pragmatic Programmer");
+    -Checkout the book: INSERT INTO checkout_item (member_id, book_id) VALUES (101, 101);
+    -Verify the checkout: SELECT member.name FROM member, book, checkout_item WHERE member.id = checkout_item.member_id AND checkout_item.book_id = book.id AND book.title = "The Pragmatic Programmer";
+5. SELECT member.name FROM member WHERE (select count(checkout_item.member_id) FROM checkout_item WHERE checkout_item.member_id = member.id GROUP BY checkout_item.member_id) > 1;
